@@ -1,0 +1,9 @@
+__pycache__/
+*.py[cod]
+
+# Generated on every run of make_figures.py, and already published in the paper.
+figures/*
+
+# Monte-Carlo result caches, written on first run and rebuilt if absent.  Shipping them would ship
+# one machine's samples as if they were part of the code.
+code/*_cache.json
