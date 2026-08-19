@@ -88,6 +88,84 @@ sources live with the manuscript.
 
 `figures/` is empty until you run `make_figures.py` — the figures themselves are in the paper.
 
+## Numerical methods
+
+This section is the paper's numerical-methods appendix. It lives here rather than in the paper
+because everything it describes is in this repository.
+
+### Exact rather than sampled, wherever possible
+
+The orthogonal twirls `𝓣⁽ᵏ⁾_{𝕆(d)}` are computed as exact orthogonal projectors onto the commutant
+(`twirl_engine.twirl`), through the Weingarten formula with the Moore–Penrose pseudoinverse of the
+Gram matrix, and are validated by idempotency and against direct Haar-`𝕆(d)` sampling
+(`twirl_engine.twirl_MC`).
+
+The Gram determinant is obtained by exact symbolic factorisation of `(d^{ℓ(i,j)})`, and the `d = 2`
+null space by exact rational row reduction (`weingarten_full.py`), so both are established over
+`ℚ[d]` rather than numerically. The coefficient solves — the order-two Weingarten matrix, the
+two-block coefficients and their finite `d = 2` values, and the complex-basis coefficients — are
+likewise symbolic, and are verified to satisfy all fifteen rows of the system with zero residual.
+
+Noise channels are stored as Kraus lists (`channels.py`), with the dual `ℰ*` built from the adjoint
+Kraus operators, and the scalar invariants `α, β, β̃, γ, δ` are computed straight from their
+definitions rather than from any closed form.
+
+### Instances simulated
+
+| protocol | sizes | noise | shots |
+|---|---|---|---|
+| global | `n = 2, 3` | depolarizing `p = 0.85, 0.9`; amplitude damping `p = 0.75` | 2.5 × 10⁵ per trajectory, 40 trajectories |
+| global, head-to-head (Fig. 1) | `n = 2 … 8` | depolarizing | 2.5 × 10⁵ for `n ≤ 6`, 6.8 × 10⁴ for `n = 7, 8` |
+| local | `n = 6`, Pauli weights 1–4; `n = 4, 6, 8, 10` at weight 2 | product | — |
+| many-body | GHZ with the fidelity observable; critical TFIM (`J = h = 1`) in its ground state, `n ≤ 11` | `p = 0.9` | — |
+| many-body | `J₁–J₂` Heisenberg triangle (`J₁ = 1`, `J₂ = 0.5`), chirality strength 0.8, `n = 3` | — | — |
+
+### Three simulators, which are not interchangeable
+
+- **Global** (`protocol_mc.py`, `mc_general.py`) — draws `U ∼ 𝕆(d)`, applies `ℰ`, samples a
+  computational- or complex-basis outcome and inverts, so it exercises the protocol as specified.
+  For depolarizing noise the outcome law is available in closed form and is used directly; for
+  **non-unital** noise (amplitude damping) the general Kraus trajectory sampler is required.
+- **Local** (`mc_local.py`) — exploits the fact that the estimator factorises across qubits and
+  that every noise model except the coherent one acts on the measurement diagonal as a classical
+  stochastic map. A noiseless bitstring drawn from a state vector is pushed through a per-qubit
+  classical channel exactly, so no `d × d` operator is ever formed and `n = 10` is reachable.
+- **Coherent noise** is not of that form, and is applied to the state vector instead.
+
+### Cross-checks
+
+Every closed form is evaluated a second time by an independent route — the exact commutant twirl
+for the moments, and the definitions for the scalar invariants. Design-independence is checked by
+explicitly averaging over the real two-qubit Clifford group `𝒞₂ ∩ 𝕆(4)` rather than by assuming
+the design property.
+
+> **A note on that group's order.** `real_clifford_2()` reports **1152**, which counts elements
+> *modulo sign*: `±U` produce the same snapshot, so the ensemble is projective and `_canon`
+> quotients by the global sign. Counted as matrices the group has **2304** elements. Both numbers
+> describe the same object; 1152 is the one that matters for a shadow ensemble.
+
+Two evaluations are placed deliberately outside the regime the paper works in:
+
+- the general seminorm is tested on a completely positive map that is **neither trace-preserving
+  nor unital**, so that `α ≠ d` and it is the general form rather than its specialisation that is
+  being confirmed;
+- the unitary limit is tested on a basis with `⟨w|w*⟩ = 0` for every `w`, where `γ` and `δ` vanish
+  *identically* rather than approximately.
+
+Together the sampled experiments span all four Parts and all five noise models: the global protocol
+on real and complex bases, the local orthogonal and unitary product ensembles, a `Y`-supported
+observable invisible to any real basis, the global **unitary** protocol — so the factor-of-two
+comparison rests on two simulations rather than on one simulation and one transcribed formula — and
+the noise-blind estimator.
+
+### Two structural facts that sharpen the local checks
+
+At `d = 2` the contracted third moment is a multiple of the identity, so the seminorm equals
+`𝔼[ô²]` exactly and is state-independent. And `𝕆(2)` acts on `σ_y` by the determinant,
+`U^⊺σ_y U = det(U) σ_y`, which fails for `X` and `Z`. Consequently the squared single-site `Y`
+estimator is deterministic, and its sampled second moment reproduces the closed form with **no
+statistical error at all** — a check that would be invisible if it were only approximate.
+
 ## Citation
 
 ```bibtex
