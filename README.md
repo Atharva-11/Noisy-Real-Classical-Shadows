@@ -66,7 +66,15 @@ numpy scipy matplotlib sympy`) resolves it.
 - `many_body.py`, `instance_ensembles.py` — TFIM ground states and random instance families
 - `complex_third_moment.py`, `local_complex.py` — the complex-basis second moment
 - `median_of_means.py` — the estimator of the sample-complexity corollary
+- `two_design_gap.py` — the optimality result of §8: an orthogonal 2-design at *d* = 4 that is not
+  a 3-design, whose shadow channel agrees with a 3-design's but whose second moment is 20.6 % lower
 - `make_figures.py` — every figure
+
+`two_design_gap.py` is the one module that is not a figure dependency; run it directly:
+
+```
+python two_design_gap.py
+```
 
 **Not here:** the verification suite. The paper is backed by 113 analytic/symbolic checks and 13
 Monte-Carlo checks, run behind eight text gates that hold the manuscript's claims, cross-references

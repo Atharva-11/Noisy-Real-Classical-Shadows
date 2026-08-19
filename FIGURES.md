@@ -57,6 +57,13 @@ Figure 10 is drawn from the loop-exponent matrix `ℓ(i,j)`, which is held as an
 `_E` and `gram_k3` agree exactly; that equality is one of the checks in the (unshipped)
 verification suite.
 
+## Code that is not a figure
+
+[`code/two_design_gap.py`](code/two_design_gap.py) backs the optimality paragraph of §8 rather
+than any figure. Run it directly (`python two_design_gap.py`) and it prints every number that
+paragraph quotes: the group orders 288 and 1152, the commutant dimensions (3, 21) against (3, 15),
+the agreement of the two shadow channels, and the 20.6 % second-moment gap.
+
 ## Generators kept but not used by the paper
 
 `make_figures.py` also contains `fig_convergence()` (`fig2_convergence`) and `fig_amp_damping()`
