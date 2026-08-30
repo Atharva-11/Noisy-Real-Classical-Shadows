@@ -29,13 +29,13 @@ writes all of them to `figures/` as both `.pdf` and `.png`.
 |---|---|
 | 1 | Exact variance ratio `Var_𝕌 / Var_𝕆` under depolarizing noise (`p = 0.9`), over 500 random `(ρ, O)` instances per point. |
 | 2 | The median-of-means estimator, run: measured failure probability against batch size. |
-| 3 | Two statements run rather than only derived — the noise-blind protocol, and the monotonicity of the variance in the noise. |
+| 3 | The noise-blind protocol, and the monotonicity of the variance in the noise. |
 | 4 | The depolarizing parameter `f(ℰ) = 2(β−1)/((d−1)(d+2))` for all five noise models, against the noiseless value `2/(d+2)`. |
 | 5 | Local Pauli shadow seminorm under single-qubit depolarizing noise: the orthogonal `(2f₁²)^{-wt}` against the unitary counterpart. |
-| 6 | Complex-basis crossover against the reality fraction `ς`, at `n = 3, 5, 7` — two panels, parameter and variance. |
+| 6 | Complex-basis crossover against the reality fraction `ς`, at `n = 3, 5, 7`, two panels, parameter and variance. |
 | 7 | Reality-tuned crossover under noise at `n = 2`: the exact single-shot variance as `ς` falls from 1 to 0. |
 | 8 | The advantage as a function of the single parameter `κ`, including the GHZ case study. |
-| 9 | An observable outside the real visible space — the three-spin chirality. |
+| 9 | An observable outside the real visible space: the three-spin chirality. |
 | 10 | The fifteen eigenvalues of the order-three Gram matrix `G₃(d) = (d^{ℓ(i,j)})`, five of which vanish as `d → 2`. |
 
 ## The Gram-matrix code
