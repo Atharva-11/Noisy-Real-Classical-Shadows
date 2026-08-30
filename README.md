@@ -10,7 +10,7 @@ Weingarten computations, the shadow-protocol simulators, and the figure generato
 ## Layout
 
 ```
-code/         20 modules — see FIGURES.md for which one makes which figure
+code/         20 modules; see FIGURES.md for which one makes which figure
 figures/      output directory (created on first run)
 FIGURES.md    figure number -> file -> generator -> modules
 ```
@@ -124,7 +124,7 @@ Two general experiments:
 - the unitary limit is tested on a basis with `⟨w|w*⟩ = 0` for every `w`, where `γ` and `δ` vanish
   *identically* rather than approximately.
 
-Together the sampled experiments cover all four Parts and all five noise models: the global protocol
+Together, the sampled experiments cover all four Parts and all five noise models: the global protocol
 on real and complex bases, the local orthogonal and unitary product ensembles, a `Y`-supported
 observable invisible to any real basis, the global **unitary** protocol and
 the noise-blind estimator.
