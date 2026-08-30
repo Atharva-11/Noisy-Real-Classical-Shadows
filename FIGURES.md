@@ -56,7 +56,7 @@ Figure 10 is drawn from the loop-exponent matrix `ℓ(i,j)`, which is held as an
 
 [`code/two_design_gap.py`](code/two_design_gap.py) supports the optimality paragraph of §8. Run it directly (`python two_design_gap.py`) and it prints every number that paragraph quotes: the group orders 288 and 1152, the commutant dimensions (3, 21) against (3, 15), the agreement of the two shadow channels, and the 20.6 % second-moment gap.
 
-## Generators not used in the paper
+## Files not used in the paper
 
 `make_figures.py` also contains `fig_convergence()` (`fig2_convergence`) and `fig_amp_damping()`
 (`fig7_amp_damping`). Both run, and their dependencies are shipped, but neither figure appears in
