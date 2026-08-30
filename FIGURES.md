@@ -1,8 +1,6 @@
 # Which code makes which figure
 
-The figure numbers in the left column are the numbers **as printed in the paper**. The filenames
-carry the generator's own historical numbering, which is not the same and never was — that is the
-main reason this table exists.
+The figure numbers in the left column are the numbers **as printed in the paper**. 
 
 Every figure is produced by a function in [`code/make_figures.py`](code/make_figures.py). Running
 
@@ -45,32 +43,21 @@ writes all of them to `figures/` as both `.pdf` and `.png`.
 Figure 10 is drawn from the loop-exponent matrix `ℓ(i,j)`, which is held as an integer constant
 `_E` inside `make_figures.py`. The matrix itself is *constructed* in:
 
-- [`code/weingarten_core.py`](code/weingarten_core.py) — `gram_k3(d)` builds `G₃(d)` from the
+- [`code/weingarten_core.py`](code/weingarten_core.py): `gram_k3(d)` builds `G₃(d)` from the
   fifteen Brauer diagram operators, and `basis_k3` / `perm_operator` / `omega_operator` build the
   operators.
-- [`code/weingarten_full.py`](code/weingarten_full.py) — the full symbolic derivation: `G₂` and its
+- [`code/weingarten_full.py`](code/weingarten_full.py): the full symbolic derivation: `G₂` and its
   inverse `Wg₂`, the exponent matrix, `det G₃(d)` and its factorisation, and the five radical
   generators of `𝔅₃(2)`.
-- [`code/twirl_engine.py`](code/twirl_engine.py) — the exact `𝕆(d)` twirl at `k = 2, 3` as the
+- [`code/twirl_engine.py`](code/twirl_engine.py): the exact `𝕆(d)` twirl at `k = 2, 3` as the
   orthogonal projector onto the commutant.
 
-`_E` and `gram_k3` agree exactly; that equality is one of the checks in the (unshipped)
-verification suite.
+`_E` and `gram_k3` agree exactly.
 
-## Code that is not a figure
+[`code/two_design_gap.py`](code/two_design_gap.py) supports the optimality paragraph of §8. Run it directly (`python two_design_gap.py`) and it prints every number that paragraph quotes: the group orders 288 and 1152, the commutant dimensions (3, 21) against (3, 15), the agreement of the two shadow channels, and the 20.6 % second-moment gap.
 
-[`code/two_design_gap.py`](code/two_design_gap.py) backs the optimality paragraph of §8 rather
-than any figure. Run it directly (`python two_design_gap.py`) and it prints every number that
-paragraph quotes: the group orders 288 and 1152, the commutant dimensions (3, 21) against (3, 15),
-the agreement of the two shadow channels, and the 20.6 % second-moment gap.
-
-## Generators kept but not used by the paper
+## Generators not used in the paper
 
 `make_figures.py` also contains `fig_convergence()` (`fig2_convergence`) and `fig_amp_damping()`
 (`fig7_amp_damping`). Both run, and their dependencies are shipped, but neither figure appears in
 the paper.
-
-Two further generators were **removed** from this release copy, because they depend on the
-verification machinery which is not part of it: `fig_verification()` (needed `verify_all`) and
-`fig_approx_design()` (needed `approx_design`, `clifford_depth`). Neither figure appears in the
-paper either.
