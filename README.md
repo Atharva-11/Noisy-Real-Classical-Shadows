@@ -48,25 +48,25 @@ numpy  scipy  matplotlib  sympy
 
 **A note on the interpreter.** These were developed under Anaconda. If you hit an error from
 `scipy.spatial` or a missing `qhull` DLL when importing `twirl_engine`, that is a broken SciPy
-install rather than a problem with this code — a clean environment (`conda create -n rcs python
+install rather than a problem with this code; a clean environment (`conda create -n rcs python
 numpy scipy matplotlib sympy`) resolves it.
 
 ## The Gram-matrix / Weingarten machinery.
 
-- `weingarten_core.py` — Brauer diagram operators, the order-3 Gram matrix `G₃(d)`, and the
+- `weingarten_core.py`: Brauer diagram operators, the order-3 Gram matrix `G₃(d)`, and the
   orthogonal Weingarten function
-- `weingarten_full.py` — the full symbolic derivation: `G₂`, `Wg₂`, the loop-exponent matrix,
+- `weingarten_full.py`: the full symbolic derivation: `G₂`, `Wg₂`, the loop-exponent matrix,
   `det G₃(d)` and its factorisation, and the five radical generators of `𝔅₃(2)`
-- `twirl_engine.py` — the exact `𝕆(d)` twirl at `k = 2, 3`
-- `exact_tools.py` — exact single-shot mean and variance, no sampling
-- `mc_*.py`, `protocol_mc.py` — the protocol simulators
-- `channels.py`, `noise_zoo.py`, `noise_examples.py` — the noise models
-- `many_body.py`, `instance_ensembles.py` — TFIM ground states and random instance families
-- `complex_third_moment.py`, `local_complex.py` — the complex-basis second moment
-- `median_of_means.py` — the estimator of the sample-complexity corollary
-- `two_design_gap.py` — the optimality result of §8: an orthogonal 2-design at *d* = 4 that is not
+- `twirl_engine.py`: the exact `𝕆(d)` twirl at `k = 2, 3`
+- `exact_tools.py`: exact single-shot mean and variance, no sampling
+- `mc_*.py`, `protocol_mc.py`: the protocol simulators
+- `channels.py`, `noise_zoo.py`, `noise_examples.py`: the noise models
+- `many_body.py`, `instance_ensembles.py`: TFIM ground states and random instance families
+- `complex_third_moment.py`, `local_complex.py`: the complex-basis second moment
+- `median_of_means.py`: the estimator of the sample-complexity corollary
+- `two_design_gap.py`: the optimality result of §8: an orthogonal 2-design at *d* = 4 that is not
   a 3-design, whose shadow channel agrees with a 3-design's but whose second moment is 20.6 % lower
-- `make_figures.py` — every figure
+- `make_figures.py`: every figure
 
 `two_design_gap.py` is the one module that is not a figure dependency; run it directly:
 
