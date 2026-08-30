@@ -76,24 +76,11 @@ numpy scipy matplotlib sympy`) resolves it.
 python two_design_gap.py
 ```
 
-**Not here:** the verification suite. The paper is backed by 113 analytic/symbolic checks and 13
-Monte-Carlo checks, run behind eight text gates that hold the manuscript's claims, cross-references
-and numbers in agreement with the code. That machinery is a development tool rather than a
-scientific artefact, and shipping it would roughly triple the size of this repository without
-helping anyone reproduce a figure. It is available on request.
-
-The modules here carry no comments: one line per module saying what it is for, and one line per
-function saying what it computes, naming the equation or figure where there is one. The annotated
-sources live with the manuscript.
-
 `figures/` is empty until you run `make_figures.py` — the figures themselves are in the paper.
 
 ## Numerical methods
 
-This section is the paper's numerical-methods appendix. It lives here rather than in the paper
-because everything it describes is in this repository.
-
-### Exact rather than sampled, wherever possible
+### Exact rather than sampled
 
 The orthogonal twirls `𝓣⁽ᵏ⁾_{𝕆(d)}` are computed as exact orthogonal projectors onto the commutant
 (`twirl_engine.twirl`), through the Weingarten formula with the Moore–Penrose pseudoinverse of the
@@ -120,7 +107,7 @@ definitions rather than from any closed form.
 | many-body | GHZ with the fidelity observable; critical TFIM (`J = h = 1`) in its ground state, `n ≤ 11` | `p = 0.9` | — |
 | many-body | `J₁–J₂` Heisenberg triangle (`J₁ = 1`, `J₂ = 0.5`), chirality strength 0.8, `n = 3` | — | — |
 
-### Three simulators, which are not interchangeable
+### Three simulators
 
 - **Global** (`protocol_mc.py`, `mc_general.py`) — draws `U ∼ 𝕆(d)`, applies `ℰ`, samples a
   computational- or complex-basis outcome and inverts, so it exercises the protocol as specified.
